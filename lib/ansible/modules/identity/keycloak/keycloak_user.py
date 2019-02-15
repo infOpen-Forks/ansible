@@ -14,7 +14,7 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = '''
 ---
-module: keycloak_username
+module: keycloak_user
 
 short_description: Allows administration of Keycloak users via Keycloak API
 
@@ -36,7 +36,7 @@ options:
     realm:
         description:
             - The realm to create the client in.
-        default: 'master'
+        default: "master"
 
     attributes:
         description:
@@ -50,12 +50,12 @@ options:
             - user_id of client to be worked on. This is usually an UUID. This and I(client_username)
               are mutually exclusive.
 
-    keycloak_username
+    keycloak_username:
         description:
             - username of client to be worked on. This and I(user_id) are mutually exclusive.
             - keycloak lower the username
 
-    email_verified
+    email_verified:
         description:
             - show if the user email have been verified
         required: false
@@ -67,19 +67,18 @@ options:
         required: false
         type: bool
 
-    email
+    email:
         description:
             - the user email
             - this module does not check the validity of the email
             - when using the api, there is no check about the validity of the email in keycloak
             - but with manual action, the format is checked
-
         required: false
 
     required_actions:
         description:
             - a list of actions to be done by the user
-            — each element must be in the choices
+            - each element must be in the choices
         choices: ['UPDATE_PROFILE', 'VERIFY_EMAIL', 'UPDATE_PASSWORD', 'CONFIGURE_TOTP']
 
     first_name:
