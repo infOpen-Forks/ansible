@@ -16,7 +16,7 @@ DOCUMENTATION = '''
 ---
 module: keycloak_username
 
-short_description: Allows administration of Keycloak users via Keycloak API 
+short_description: Allows administration of Keycloak users via Keycloak API
 
 version_added: "2.8"
 
@@ -26,7 +26,7 @@ description:
       used must have the requisite access rights. In a default Keycloak installation, admin-cli
       and an admin user would work, as would a separate client definition with the scope tailored
       to your needs and a user having the expected roles.
-      
+
     - The names of module options are snake_cased versions of the camelCase ones found in the
       Keycloak API and its documentation at U(https://www.keycloak.org/docs-api/4.8/rest-api/index.html/).
       Aliases are provided so camelCased versions can be used as well. If they are in conflict
@@ -40,65 +40,65 @@ options:
             - On C(absent), the user will be removed if it exists
         choices: ['present', 'absent']
         default: 'present'
-    
+
     realm:
         description:
             - The realm to create the client in.
-    
+
     attributes:
         description:
-            – a dictionary with the key and the value to put in keycloak. 
-            Keycloak will always return the value in a list. For example, 
-            if you send {'a key': 'some value'} when updated, the attributes 
-            will be returned as following {'a key': ['some value']}. Keys and 
+            – a dictionary with the key and the value to put in keycloak.
+            Keycloak will always return the value in a list. For example,
+            if you send {'a key': 'some value'} when updated, the attributes
+            will be returned as following {'a key': ['some value']}. Keys and
             values are converted into string.
         required: false
-    
+
     user_id:
         description:
             - user_id of client to be worked on. This is usually an UUID. This and I(client_username)
               are mutually exclusive.
-              
+
     keycloak_username
         description:
             - username of client to be worked on. This and I(user_id) are mutually exclusive.
             - keycloak lower the username
-    
+
     email_verified
         description:
             - show if the user email have been verified
         required: false
         type: bool
-    
+
     enabled:
         description:
             - show if the user can logged in
         required: false
         type: bool
-    
+
     email
         description:
             - the user email
             - this module does not check the validity of the email
             - when using the api, there is no check about the validity of the email in keycloak
             - but with manual action, the format is checked
-            
+
         required: false
         type: bool
-        
+
     required_actions:
         description:
             - a list of actions to be done by the user
             — each element must be in the choices
         choices: ['UPDATE_PROFILE', 'VERIFY_EMAIL', 'UPDATE_PASSWORD', 'CONFIGURE_TOTP']
-        
+
     first_name:
         description:
             - the user first name
-    
+
     last_name:
         description:
-            - the user last name 
+            - the user last name
 
 extends_documentation_fragment:
     - keycloak
