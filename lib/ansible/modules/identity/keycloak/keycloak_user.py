@@ -293,8 +293,7 @@ def required_actions_are_in_authorized_list(given_required_actions):
         for one_action in given_required_actions:
             if one_action not in AUTHORIZED_REQUIRED_ACTIONS:
                 return False
-        else:
-            return True
+        return True
     if given_required_actions not in AUTHORIZED_REQUIRED_ACTIONS:
         return False
     return True
