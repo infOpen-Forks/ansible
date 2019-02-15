@@ -33,25 +33,16 @@ description:
       with ansible names or previous used names, they will be prefixed by "keycloak".
 
 options:
-    state:
-        description:
-            - State of the user
-            - On C(present), the user will be created (or updated if it exists already).
-            - On C(absent), the user will be removed if it exists
-        choices: ['present', 'absent']
-        default: 'present'
-
     realm:
         description:
             - The realm to create the client in.
+        default: 'master'
 
     attributes:
         description:
             – a dictionary with the key and the value to put in keycloak.
-            Keycloak will always return the value in a list. For example,
-            if you send {'a key': 'some value'} when updated, the attributes
-            will be returned as following {'a key': ['some value']}. Keys and
-            values are converted into string.
+            Keycloak will always return the value in a list of one element.
+            Keys and values are converted into string.
         required: false
 
     user_id:
@@ -84,7 +75,6 @@ options:
             - but with manual action, the format is checked
 
         required: false
-        type: bool
 
     required_actions:
         description:
