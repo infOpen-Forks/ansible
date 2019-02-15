@@ -269,12 +269,12 @@ def test_state_absent_should_delete_existing_user(monkeypatch, url_mock_keycloak
     monkeypatch.setattr(keycloak_user.AnsibleModule, 'exit_json', exit_json)
     monkeypatch.setattr(keycloak_user.AnsibleModule, 'fail_json', fail_json)
     arguments = {
-            'auth_keycloak_url': 'http://keycloak.url/auth',
-            'auth_username': 'test_admin',
-            'auth_password': 'admin_password',
-            'auth_realm': 'master',
-            'state': 'absent'
-        }
+        'auth_keycloak_url': 'http://keycloak.url/auth',
+        'auth_username': 'test_admin',
+        'auth_password': 'admin_password',
+        'auth_realm': 'master',
+        'state': 'absent'
+    }
     arguments.update(user_to_delete)
     set_module_args(arguments)
     with pytest.raises(AnsibleExitJson) as exec_error:
@@ -300,9 +300,10 @@ def build_user_update_request(request):
         new_response_dictionary .update({
             'http://keycloak.url/auth/admin/realms/master/users/883eeb5e-51d0-4aa9-8cb7-667f53e62e90': {
                 'PUT': None,
-                'GET': [create_wrapper(GET_USER_BY_ID),
-                        create_wrapper(UPDATED_USER)
-            ]}})
+                'GET': [
+                    create_wrapper(GET_USER_BY_ID),
+                    create_wrapper(UPDATED_USER)
+                ]}})
     return request.param, new_response_dictionary
 
 
@@ -321,13 +322,13 @@ def test_state_present_should_update_existing_user(monkeypatch, dynamic_url_for_
     monkeypatch.setattr(keycloak_user.AnsibleModule, 'exit_json', exit_json)
     monkeypatch.setattr(keycloak_user.AnsibleModule, 'fail_json', fail_json)
     arguments = {
-            'auth_keycloak_url': 'http://keycloak.url/auth',
-            'auth_username': 'test_admin',
-            'auth_password': 'admin_password',
-            'auth_realm': 'master',
-            'state': 'present',
-            'email': 'user1@domain.net'
-        }
+        'auth_keycloak_url': 'http://keycloak.url/auth',
+        'auth_username': 'test_admin',
+        'auth_password': 'admin_password',
+        'auth_realm': 'master',
+        'state': 'present',
+        'email': 'user1@domain.net'
+    }
     arguments.update(user_to_update)
     set_module_args(arguments)
     with pytest.raises(AnsibleExitJson) as exec_error:
