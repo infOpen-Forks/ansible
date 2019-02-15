@@ -317,7 +317,7 @@ def dynamic_url_for_user_update(mocker, build_user_update_request):
 
 
 def test_state_present_should_update_existing_user(monkeypatch, dynamic_url_for_user_update):
-    user_to_update, _ = dynamic_url_for_user_update
+    user_to_update, dummy = dynamic_url_for_user_update
     monkeypatch.setattr(keycloak_user.AnsibleModule, 'exit_json', exit_json)
     monkeypatch.setattr(keycloak_user.AnsibleModule, 'fail_json', fail_json)
     arguments = {
